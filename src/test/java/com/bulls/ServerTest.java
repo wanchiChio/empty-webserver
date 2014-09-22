@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class HttpTest {
+public class ServerTest {
 
     @Test
     public void itStartsAServer() throws Exception {
