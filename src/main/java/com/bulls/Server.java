@@ -6,4 +6,8 @@ public class Server {
     {
 
     }
+
+    public boolean start() {
+        return true;
+    }
 }
