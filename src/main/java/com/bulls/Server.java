@@ -2,14 +2,17 @@ package com.bulls;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 
-public class Server {
+public class Server implements Runnable{
 
     private int port;
     private String status;
     private String responseCode;
     private ServerSocket serverSocket;
     private String body;
+    private boolean threadRun = true;
+
 
     public Server() {
     }
@@ -28,8 +31,12 @@ public class Server {
     }
 
     public void start() {
+        new Thread(this).start();
         this.status = "Started";
+
     }
+
+
 
     public String getStatus() {
         return status;
@@ -62,4 +69,27 @@ public class Server {
     public void setBody(String body) {
         this.body = body;
     }
+
+    public void stop() throws IOException{
+        threadRun = false;
+        serverSocket.close();
+        this.status = "Stopped";
+    }
+
+    public void run() {
+
+        while (threadRun) {
+            try {
+                Socket cSocket = serverSocket.accept();
+                //handleRequest(cSocket);
+            } catch(IOException e) {
+            	 System.out.println("Failed to start server: " + e.getMessage());
+                System.exit(0);
+                return;
+            }
+        };
+
+    }
+
+
 }
