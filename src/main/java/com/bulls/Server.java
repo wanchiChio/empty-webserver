@@ -9,6 +9,7 @@ public class Server {
     private String status;
     private String responseCode;
     private ServerSocket serverSocket;
+    private String body;
 
     public Server() {
     }
@@ -39,10 +40,6 @@ public class Server {
         this.status = status;
     }
 
-    public int get() {
-        return 404;
-    }
-
     public int getResponseCode() {
         return Integer.parseInt(responseCode);
     }
@@ -57,5 +54,13 @@ public class Server {
 
     public ServerSocket getSocket() {
         return serverSocket;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
     }
 }

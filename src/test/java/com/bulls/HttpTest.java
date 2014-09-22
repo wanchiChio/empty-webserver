@@ -19,7 +19,6 @@ public class HttpTest {
         Server server = new Server();
         server.start();
         server.setResponseCode("404");
-        server.get();
         assertEquals(404, server.getResponseCode());
     }
 
@@ -28,5 +27,13 @@ public class HttpTest {
         Server server = new Server(5000);
         assertEquals(5000, server.getPort());
         assertNotNull(server.getSocket());
+    }
+
+    @Test
+    public void itReturnsABody() throws Exception {
+        Server server = new Server();
+        server.start();
+        server.setBody("Hello, world!");
+        assertEquals("Hello, world!", server.getBody());
     }
 }
