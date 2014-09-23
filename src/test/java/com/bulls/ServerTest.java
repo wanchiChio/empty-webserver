@@ -54,11 +54,11 @@ public class ServerTest {
         assertEquals(true, server.getSocket().isClosed());
     }
 
-    @Test
-    public void clientGet404() throws Exception
-    {
-        server.start();
-
+//    @Test
+//    public void clientGet404() throws Exception
+//    {
+//        server.start();
+//
 //        try {
 //            URL url = new URL("http://localhost:5000/foo");
 //            URLConnection conn = url.openConnection();
@@ -67,19 +67,21 @@ public class ServerTest {
 //                            conn.getInputStream())
 //            );
 //            String inputLine;
+//            System.out.println("Haha");
+//            server.stop();
 //
-//            while ((inputLine = in.readLine()) != null)
-//                System.out.println(inputLine);
-//            assertEquals("404", inputLine);
+//      //      while ((inputLine = in.readLine()) != null)
+//      //          System.out.println(inputLine);
+//      //      assertEquals("404", inputLine);
 //        }
 //        catch (Exception e) {
 //            System.out.println(e.getMessage());
 //        }
-
-        server.stop();
-
-
-    }
+//
+//        server.stop();
+//
+//
+//    }
 
     @After
     public void cleanUp() throws IOException {

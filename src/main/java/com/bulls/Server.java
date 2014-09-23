@@ -1,6 +1,9 @@
 package com.bulls;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -24,6 +27,14 @@ public class Server implements Runnable{
 
     public static void main(String[] args) {
 
+        try {
+            Server server = new Server(Integer.parseInt(args[1]));
+            server.start();
+        }
+        catch (Exception e) {
+
+
+        }
     }
 
     private void createSocket(int port) throws IOException {
@@ -80,16 +91,52 @@ public class Server implements Runnable{
 
         while (threadRun) {
             try {
-                Socket cSocket = serverSocket.accept();
-                //handleRequest(cSocket);
+
+                Socket socket = serverSocket.accept();
+                generateOutput(socket);
+
             } catch(IOException e) {
-            	 System.out.println("Failed to start server: " + e.getMessage());
+            	System.out.println("Failed to start server: " + e.getMessage());
                 System.exit(0);
                 return;
             }
         };
 
     }
+
+
+    public void generateOutput (Socket socket) {
+        try {
+
+            // Decorate the streams so we can send characters
+            // and not just bytes.  Ensure output is flushed
+            // after every newline.
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(socket.getInputStream()));
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+
+            out.println("HTTP/1.0 404 Not Found");
+            out.flush();
+
+//            while (true) {
+//                String input = in.readLine();
+//                if (input == null || input.equals(".")) {
+//                    break;
+//                }
+//                out.println(input.toUpperCase());
+//            }
+        } catch (IOException e) {
+
+        } finally {
+            try {
+                socket.close();
+            } catch (IOException e) {
+
+            }
+
+        }
+    }
+
 
 
 }
