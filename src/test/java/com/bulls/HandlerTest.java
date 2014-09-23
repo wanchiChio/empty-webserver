@@ -25,9 +25,13 @@ public class HandlerTest {
     public void processInput() throws Exception {
 
         
-        String data = "stuff";
+        String data = "GET /pub/WWW/TheProject.html HTTP/1.1";
 
         RequestHandler handler = new fourOhFourHandler();
+        handler.parseInput(data);
+        assertEquals("/pub/WWW/TheProject.html", handler.getEndPoint());
+
+
 
         //assertEquals(data, );
         //InputStream is = new ;

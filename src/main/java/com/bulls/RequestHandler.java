@@ -7,4 +7,12 @@ public interface RequestHandler {
 
 
     String genDefaultResponse();
+
+    void parseInput(String data);
+
+    public String getEndPoint();
+
+    public void setEndPoint(String endPoint);
+
+    public String getHttpMethod();
 }
