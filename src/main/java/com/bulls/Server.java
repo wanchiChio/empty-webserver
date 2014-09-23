@@ -19,12 +19,11 @@ public class Server implements Runnable{
     }
 
     public static void main(String[] args) {
-
         try {
             Server server = new Server(Integer.parseInt(args[1]));
             server.start();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
+            // Do nothing
         }
     }
 
@@ -66,10 +65,8 @@ public class Server implements Runnable{
     }
 
     public void run() {
-
         while (threadRun) {
             try {
-
                 Socket socket = serverSocket.accept();
                 generateOutput(socket);
 
@@ -78,15 +75,11 @@ public class Server implements Runnable{
                 System.exit(0);
                 return;
             }
-        };
+        }
     }
-
-
-
 
     public void generateOutput (Socket socket) {
         try {
-
             // Decorate the streams so we can send characters
             // and not just bytes.  Ensure output is flushed
             // after every newline.
@@ -94,22 +87,24 @@ public class Server implements Runnable{
                     new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
-            RequestHandler handler = RequestHanderFactory.generateRequestHandler(in.readLine());
+            RequestHandler handler = RequestHandlerFactory.generateRequestHandler(in.readLine());
             //handler.parseInput(in.readLine());
-            out.println(handler.genDefaultResponse());
+
+            if (handler.processRequest())
+                out.println(handler.generateResponse());
+            else
+                out.println(handler.generateDefaultResponse());;
+
             out.flush();
-
         } catch (IOException e) {
-
+            // Do nothing
         } finally {
             try {
                 socket.close();
             } catch (IOException e) {
-
+                // Do nothing
             }
         }
     }
-
-
 
 }
