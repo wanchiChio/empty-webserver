@@ -12,7 +12,7 @@ public class HandlerTest {
 
     @Test
     public void handler404test() throws Exception {
-        RequestHandler handler = new FourOhFourHandler();
+        RequestHandler handler = new NotFoundHandler();
         String output = handler.generateDefaultResponse();
 
         assertEquals("HTTP/1.0 404 Not Found", output);
@@ -21,7 +21,7 @@ public class HandlerTest {
     @Test
     public void processInput() throws Exception {
         String data = "GET /pub/WWW/TheProject.html HTTP/1.1";
-        RequestHandler handler = new FourOhFourHandler();
+        RequestHandler handler = new NotFoundHandler();
         handler.parseInput(data);
         assertEquals("/pub/WWW/TheProject.html", handler.getEndPoint());
     }
@@ -32,7 +32,7 @@ public class HandlerTest {
        String data = "GET /foobar HTTP/1.1";
        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
 
-       assertTrue(handler instanceof FourOhFourHandler);
+       assertTrue(handler instanceof NotFoundHandler);
     }
 
     @Test

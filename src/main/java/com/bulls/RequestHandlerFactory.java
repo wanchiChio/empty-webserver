@@ -11,7 +11,7 @@ public class RequestHandlerFactory {
         if (parsed != null && parsed.length > 1) {
             RequestHandler handler;
             if (parsed[1].equals("/foobar")) {
-                handler = new FourOhFourHandler();
+                handler = new NotFoundHandler();
             } else if (parsed[1].equals("/redirect")) {
                 handler = new RedirectHandler();
             } else {
