@@ -8,7 +8,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Created by anton.perez on 9/22/14.
  */
-public class ClientTest {
+public class HandlerTest {
 
 
 }
