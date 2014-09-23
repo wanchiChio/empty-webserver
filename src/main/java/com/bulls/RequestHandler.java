@@ -51,7 +51,7 @@ public abstract class RequestHandler {
     public abstract boolean processRequest();
 
     public String generateResponse() {
-        return "HTTP/1.1 " + responseCode + "\r\n" + requestPath;
+        return "HTTP/1.1 " + responseCode + "\r\nLocation: " + requestPath;
     }
 
 }

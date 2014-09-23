@@ -15,7 +15,7 @@ public class RequestHandlerFactory {
             } else if (parsed[1].equals("/redirect")) {
                 handler = new RedirectHandler();
             } else {
-                handler = null;
+                handler = new NotFoundHandler();
             }
 
             handler.setEndPoint(parsed[1]);
