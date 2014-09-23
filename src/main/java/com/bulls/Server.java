@@ -9,19 +9,12 @@ import java.net.Socket;
 
 public class Server implements Runnable{
 
-    private int port;
-    private String status;
     private String responseCode;
     private ServerSocket serverSocket;
     private String body;
     private boolean threadRun = true;
 
-
-    public Server() {
-    }
-
     public Server(int port) throws IOException {
-        this.port = port;
         createSocket(port);
     }
 
@@ -32,8 +25,6 @@ public class Server implements Runnable{
             server.start();
         }
         catch (Exception e) {
-
-
         }
     }
 
@@ -43,18 +34,6 @@ public class Server implements Runnable{
 
     public void start() {
         new Thread(this).start();
-        this.status = "Started";
-
-    }
-
-
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public int getResponseCode() {
@@ -66,7 +45,7 @@ public class Server implements Runnable{
     }
 
     public int getPort() {
-        return port;
+        return serverSocket.getLocalPort();
     }
 
     public ServerSocket getSocket() {
@@ -84,7 +63,6 @@ public class Server implements Runnable{
     public void stop() throws IOException{
         threadRun = false;
         serverSocket.close();
-        this.status = "Stopped";
     }
 
     public void run() {
@@ -101,8 +79,9 @@ public class Server implements Runnable{
                 return;
             }
         };
-
     }
+
+
 
 
     public void generateOutput (Socket socket) {
@@ -115,16 +94,11 @@ public class Server implements Runnable{
                     new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
-            out.println("HTTP/1.0 404 Not Found");
+            RequestHandler handler = new fourOhFourHandler();
+
+            out.println(handler.genDefaultResponse());
             out.flush();
 
-//            while (true) {
-//                String input = in.readLine();
-//                if (input == null || input.equals(".")) {
-//                    break;
-//                }
-//                out.println(input.toUpperCase());
-//            }
         } catch (IOException e) {
 
         } finally {
@@ -133,7 +107,6 @@ public class Server implements Runnable{
             } catch (IOException e) {
 
             }
-
         }
     }
 

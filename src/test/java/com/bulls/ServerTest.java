@@ -21,15 +21,9 @@ public class ServerTest {
     public void setUp() throws IOException {
         server = new Server(5000);
     }
-    @Test
-    public void itStartsAServer() throws Exception {
-        //server.start();
-        //assertEquals("Started", server.getStatus());
-    }
 
     @Test
     public void itReturnsA404() throws Exception {
-        //server.start();
         server.setResponseCode("404");
         assertEquals(404, server.getResponseCode());
     }
@@ -53,6 +47,8 @@ public class ServerTest {
        server.stop();
         assertEquals(true, server.getSocket().isClosed());
     }
+
+
 
 //    @Test
 //    public void clientGet404() throws Exception
