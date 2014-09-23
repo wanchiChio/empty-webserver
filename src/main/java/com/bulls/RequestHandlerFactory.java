@@ -1,5 +1,7 @@
 package com.bulls;
 
+import java.net.Authenticator;
+
 /**
  * Created by wanchi.chio on 9/23/14.
  */
@@ -14,6 +16,8 @@ public class RequestHandlerFactory {
                 handler = new NotFoundHandler();
             } else if (parsed[1].equals("/redirect")) {
                 handler = new RedirectHandler();
+            } else if (parsed[1].equals("/logs")) {
+                handler = new AuthenticateHandler();
             } else {
                 handler = new RootHandler();
             }
