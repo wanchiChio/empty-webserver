@@ -15,4 +15,6 @@ public interface RequestHandler {
     public void setEndPoint(String endPoint);
 
     public String getHttpMethod();
+
+    public void setHttpMethod(String httpMethod);
 }

@@ -94,8 +94,8 @@ public class Server implements Runnable{
                     new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
-            RequestHandler handler = new fourOhFourHandler();
-            handler.parseInput(in.readLine());
+            RequestHandler handler = RequestHanderFactory.generateRequestHandler(in.readLine());
+            //handler.parseInput(in.readLine());
             out.println(handler.genDefaultResponse());
             out.flush();
 
