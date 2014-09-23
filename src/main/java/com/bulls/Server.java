@@ -88,7 +88,6 @@ public class Server implements Runnable{
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
             RequestHandler handler = RequestHandlerFactory.generateRequestHandler(in.readLine());
-            //handler.parseInput(in.readLine());
 
             if (handler.processRequest())
                 out.println(handler.generateResponse());
@@ -96,13 +95,14 @@ public class Server implements Runnable{
                 out.println(handler.generateDefaultResponse());;
 
             out.flush();
-        } catch (IOException e) {
-            // Do nothing
+        } catch (Exception e) {
+            System.out.println("Server Error");
+
         } finally {
             try {
                 socket.close();
-            } catch (IOException e) {
-                // Do nothing
+            } catch (Exception e) {
+                System.out.println("Could not close socket");
             }
         }
     }

@@ -11,18 +11,20 @@ public class RequestHandlerFactory {
         String[] parsed = data.split(" ");
 
         if (parsed != null && parsed.length > 1) {
+
             RequestHandler handler;
-            if (parsed[1].equals("/foobar")) {
+            String endPoint = parsed[1];
+            if (endPoint.equals("/foobar")) {
                 handler = new NotFoundHandler();
-            } else if (parsed[1].equals("/redirect")) {
+            } else if (endPoint.equals("/redirect")) {
                 handler = new RedirectHandler();
-            } else if (parsed[1].equals("/logs")) {
+            } else if (endPoint.equals("/logs")) {
                 handler = new AuthenticateHandler();
             } else {
                 handler = new RootHandler();
             }
 
-            handler.setEndPoint(parsed[1]);
+            handler.setEndPoint(endPoint);
             handler.setHttpMethod(parsed[0]);
 
             return handler;
