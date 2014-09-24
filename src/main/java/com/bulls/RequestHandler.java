@@ -9,6 +9,12 @@ public abstract class RequestHandler {
     protected String endPoint;
     protected String responseCode;
     protected String requestPath;
+    private String responseBody;
+    protected Response response;
+
+    public RequestHandler() {
+        response = new Response();
+    }
 
     public String generateDefaultResponse() {
         return "HTTP/1.0 404 Not Found";
@@ -41,17 +47,20 @@ public abstract class RequestHandler {
     }
 
     public String getResponseCode() {
-        return responseCode;
+        return response.getResponseCode();
     }
 
     public String getRequestPath() {
-        return requestPath;
+        return response.getRedirectPath();
     }
 
     public abstract boolean processRequest();
 
     public String generateResponse() {
-        return "HTTP/1.1 " + responseCode + "\r\nLocation: " + requestPath;
+        return response.generateFullResponse();
     }
 
+    public String getResponseBody() {
+        return response.getBody();
+    }
 }

@@ -7,7 +7,7 @@ public class RootHandler extends RequestHandler {
 
     @Override
     public boolean processRequest() {
-        responseCode = "200";
+        response = new Response("200", "", "");
         return true;
     }
 

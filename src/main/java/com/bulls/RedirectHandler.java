@@ -7,10 +7,7 @@ public class RedirectHandler extends RequestHandler {
 
     @Override
     public boolean processRequest() {
-        responseCode = "303";
-        requestPath = "http://localhost:5000/";
+        response = new Response("303", "http://localhost:5000/", "");
         return true;
     }
-
-
 }

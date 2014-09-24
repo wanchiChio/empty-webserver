@@ -4,8 +4,7 @@ public class AuthenticateHandler extends RequestHandler {
 
     @Override
     public boolean processRequest() {
-
-        responseCode = "401";
+        response = new Response("401", "", "Authentication required");
         return true;
     }
 }

@@ -7,8 +7,7 @@ public class MockRequestHandler extends RequestHandler {
 
     @Override
     public boolean processRequest() {
-        responseCode = "888";
-        requestPath = "/mock";
+        response = new Response("888", "/mock", "");
         return false;
     }
 }
