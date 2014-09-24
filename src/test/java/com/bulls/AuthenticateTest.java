@@ -16,9 +16,7 @@ public class AuthenticateTest {
     }
 
     @Test
-    public void authenticationFail() throws Exception
-    {
-        String data = "GET /logs HTTP/1.1";
+    public void authenticationFail() throws Exception {
         handler.processRequest();
 
         assertEquals("401", handler.getResponseCode());

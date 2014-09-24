@@ -9,14 +9,14 @@ import static org.junit.Assert.assertEquals;
  * Created by wanchi.chio on 9/24/14.
  */
 public class RedirectHandlerTest {
+
     private RedirectHandler handler;
 
     @Before
-    public void setup() {
+    public void setUp() {
         handler = new RedirectHandler();
         handler.setEndPoint("/redirect");
     }
-
 
     @Test
     public void verifyResponse() throws Exception {

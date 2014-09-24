@@ -9,10 +9,8 @@ import static org.junit.Assert.assertTrue;
  */
 public class ReqeustHandlerFactoryTest {
 
-
     @Test
-    public void verifyRequestHandlerFactory404() throws Exception
-    {
+    public void verifyRequestHandlerFactory404() throws Exception {
         String data = "GET /foobar HTTP/1.1";
         RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
 
@@ -20,8 +18,7 @@ public class ReqeustHandlerFactoryTest {
     }
 
     @Test
-    public void verifyRequestHandlerFactoryRoot() throws Exception
-    {
+    public void verifyRequestHandlerFactoryRoot() throws Exception {
         String data = "GET / HTTP/1.1";
         RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
 
@@ -29,8 +26,7 @@ public class ReqeustHandlerFactoryTest {
     }
 
     @Test
-    public void verifyRequestHandlerFactoryRedirect() throws Exception
-    {
+    public void verifyRequestHandlerFactoryRedirect() throws Exception {
         String data = "GET /redirect HTTP/1.1";
         RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
 
@@ -38,8 +34,7 @@ public class ReqeustHandlerFactoryTest {
     }
 
     @Test
-    public void verifyRequestHandlerFactoryAuthenticate() throws Exception
-    {
+    public void verifyRequestHandlerFactoryAuthenticate() throws Exception {
         String data = "GET /logs HTTP/1.1";
         RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
         assertTrue(handler instanceof AuthenticateHandler);

@@ -3,13 +3,11 @@ package com.bulls;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by anton.perez on 9/22/14.
  */
 public class HandlerTest {
-
 
     @Test
     public void processInput() throws Exception {
@@ -18,12 +16,6 @@ public class HandlerTest {
         handler.parseInput(data);
         assertEquals("/pub/WWW/TheProject.html", handler.getEndPoint());
     }
-
-
-
-
-
-
 
 }
 

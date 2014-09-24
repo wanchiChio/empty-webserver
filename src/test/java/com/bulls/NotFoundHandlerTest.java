@@ -13,15 +13,13 @@ public class NotFoundHandlerTest {
     private NotFoundHandler handler;
 
     @Before
-    public void setup() {
+    public void setUp() {
         handler = new NotFoundHandler();
         handler.setEndPoint("/redirect");
     }
 
-
     @Test
     public void verifyResponseCode() throws Exception {
-
         handler.processRequest();
 
         assertEquals("404", handler.getResponseCode());
