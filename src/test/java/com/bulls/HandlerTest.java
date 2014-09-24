@@ -44,31 +44,15 @@ public class HandlerTest {
         assertEquals("200", handler.getResponseCode());
     }
 
-    @Test
-    public void redirectLocalhostTest() throws Exception {
-        String data = "GET /redirect HTTP/1.1";
-        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
-        handler.processRequest();
-
-        assertEquals("http://localhost:5000/", handler.getRequestPath());
-    }
-
-    @Test
-    public void testResponse() throws Exception {
-        String data = "GET /redirect HTTP/1.1";
-        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
-        handler.processRequest();
-
-        assertEquals("HTTP/1.1 303\r\nLocation: http://localhost:5000/", handler.generateResponse());
-    }
-
-    @Test
-    public void redirectTest() throws Exception {
+   @Test
+    public void testRedirectResponse() throws Exception {
         String data = "GET /redirect HTTP/1.1";
         RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
         handler.processRequest();
 
         assertEquals("303", handler.getResponseCode());
+        assertEquals("http://localhost:5000/", handler.getRequestPath());
+        assertEquals("HTTP/1.1 303\r\nLocation: http://localhost:5000/", handler.generateResponse());
     }
 
 }
