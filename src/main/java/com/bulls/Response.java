@@ -34,7 +34,7 @@ public class Response {
             output += "\r\nLocation: " + redirectPath;
 
         if (body.length() > 0)
-            output += "\r\n" + body;
+            output += "\r\n\r\n" + body;
 
         return output;
     }
