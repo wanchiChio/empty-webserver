@@ -27,8 +27,6 @@ public class AuthenticateTest {
     @Test
     public void authenticationFailedBodyResponse() throws Exception {
         handler.processRequest();
-
-        System.out.println(handler.generateResponse());
         assertEquals("Authentication required", handler.getResponseBody());
     }
 

@@ -7,4 +7,8 @@ public class AuthenticateHandler extends RequestHandler {
         response = new Response("401", "", "Authentication required");
         return true;
     }
+
+
+
+
 }
