@@ -36,7 +36,7 @@ public class ServerTest {
     }
 
     @Test
-    public void testGenerateOutput() throws Exception {
+    public void testGenerateOutputClosesSocket() throws Exception {
         Mocket mocket = new Mocket();
         server.generateOutput(mocket.getSocket());
 
