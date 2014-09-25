@@ -17,31 +17,26 @@ public class ResponseTest {
     }
 
     @Test
-    public void verifyResponseCode() throws Exception
-    {
+    public void verifyResponseCode() throws Exception {
         assertEquals("124", response.getResponseCode());
     }
 
     @Test
-    public void verifyRedirectPath() throws Exception
-    {
+    public void verifyRedirectPath() throws Exception {
         assertEquals("http://www.ticketmaster.com/", response.getRedirectPath());
     }
 
     @Test
-    public void verifyBody() throws Exception
-    {
+    public void verifyBody() throws Exception {
        assertEquals("Message", response.getBody());
     }
 
     @Test
-    public void verifyResponseOutput() throws Exception
-    {
+    public void verifyResponseOutput() throws Exception {
        assertEquals("HTTP/1.1 " + response.getResponseCode() +
                "\r\nLocation: " + response.getRedirectPath() +
                "\r\n\r\n" + response.getBody(), response.generateFullResponse());
     }
-
 
 
 }

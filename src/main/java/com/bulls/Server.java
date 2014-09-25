@@ -9,13 +9,11 @@ import java.net.Socket;
 
 public class Server implements Runnable{
 
-    private String responseCode;
     private ServerSocket serverSocket;
-    private String body;
     private boolean threadRun = true;
 
     public Server(int port) throws IOException {
-        createSocket(port);
+        createServerSocket(port);
     }
 
     public static void main(String[] args) {
@@ -23,11 +21,11 @@ public class Server implements Runnable{
             Server server = new Server(Integer.parseInt(args[1]));
             server.start();
         } catch (Exception e) {
-            // Do nothing
+            System.out.println("Failed to start server: " + e.getMessage());
         }
     }
 
-    private void createSocket(int port) throws IOException {
+    private void createServerSocket(int port) throws IOException {
         serverSocket = new ServerSocket(port);
     }
 
@@ -35,28 +33,12 @@ public class Server implements Runnable{
         new Thread(this).start();
     }
 
-    public int getResponseCode() {
-        return Integer.parseInt(responseCode);
-    }
-
-    public void setResponseCode(String responseCode) {
-        this.responseCode = responseCode;
-    }
-
     public int getPort() {
         return serverSocket.getLocalPort();
     }
 
-    public ServerSocket getSocket() {
+    public ServerSocket getServerSocket() {
         return serverSocket;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
     }
 
     public void stop() throws IOException{
@@ -80,9 +62,6 @@ public class Server implements Runnable{
 
     public void generateOutput (Socket socket) {
         try {
-            // Decorate the streams so we can send characters
-            // and not just bytes.  Ensure output is flushed
-            // after every newline.
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
@@ -97,7 +76,6 @@ public class Server implements Runnable{
             out.flush();
         } catch (Exception e) {
             System.out.println("Server Error");
-
         } finally {
             try {
                 socket.close();
