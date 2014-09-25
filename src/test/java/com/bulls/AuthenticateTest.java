@@ -1,9 +1,8 @@
 package com.bulls;
 
+import com.sun.org.apache.xml.internal.security.utils.Base64;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Base64;
 
 import static org.junit.Assert.assertEquals;
 
@@ -32,19 +31,17 @@ public class AuthenticateTest {
 
     @Test
     public void encodeCredentialsInHeader() throws Exception {
-        String encodedCredentials = Base64.getEncoder().encodeToString("admin:hunter2".getBytes("utf-8"));
-        handler.setRequestHeaders("Authorization: Basic #".concat(encodedCredentials));
-
+        String encoded = Base64.encode("admin:hunter2".getBytes("utf-8"));
+        handler.setRequestHeaders("Authorization: Basic #".concat(encoded));
 
         assertEquals("Authorization: Basic #YWRtaW46aHVudGVyMg==", handler.getRequestHeaders());
     }
 
     @Test
     public void ableToDecodeEncodedCredentials() throws Exception {
-        String encoded = Base64.getEncoder().encodeToString("admin:hunter2".getBytes("utf-8"));
+        String encoded = Base64.encode("admin:hunter2".getBytes("utf-8"));
         handler.setRequestHeaders("Authorization: Basic ".concat(encoded));
-
-        String decoded = new String(Base64.getDecoder().decode(encoded), "utf-8");
+        String decoded = new String(Base64.decode(encoded), "utf-8");
 
         assertEquals("admin:hunter2", decoded);
     }
