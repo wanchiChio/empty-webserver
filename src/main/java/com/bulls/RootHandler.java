@@ -6,7 +6,7 @@ package com.bulls;
 public class RootHandler extends RequestHandler {
 
     @Override
-    public boolean processRequest() {
+    public boolean processRequest(String data) {
         response = new Response("200", "", "");
         return true;
     }

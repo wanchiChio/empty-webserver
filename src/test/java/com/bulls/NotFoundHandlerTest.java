@@ -20,7 +20,7 @@ public class NotFoundHandlerTest {
 
     @Test
     public void verifyResponseCode() throws Exception {
-        handler.processRequest();
+        handler.processRequest("");
 
         assertEquals("404", handler.getResponseCode());
     }

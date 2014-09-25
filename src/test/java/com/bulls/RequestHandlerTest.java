@@ -28,7 +28,7 @@ public class RequestHandlerTest {
     @Test
     public void verifyResponseCode() throws Exception {
         MockRequestHandler handler = new MockRequestHandler();
-        handler.processRequest();
+        handler.processRequest("");
 
         assertEquals("888", handler.getResponseCode());
     }
@@ -36,7 +36,7 @@ public class RequestHandlerTest {
     @Test
     public void verifyRequestPath() throws Exception {
         MockRequestHandler handler = new MockRequestHandler();
-        handler.processRequest();
+        handler.processRequest("");
 
         assertEquals("/mock", handler.getRequestPath());
     }
@@ -51,7 +51,7 @@ public class RequestHandlerTest {
     @Test
     public void verifyGenerateResponse() throws Exception {
         MockRequestHandler handler = new MockRequestHandler();
-        handler.processRequest();
+        handler.processRequest("");
 
         assertEquals("HTTP/1.1 888\r\nLocation: /mock", handler.generateResponse());
     }

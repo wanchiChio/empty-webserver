@@ -6,7 +6,7 @@ package com.bulls;
 public class RedirectHandler extends RequestHandler {
 
     @Override
-    public boolean processRequest() {
+    public boolean processRequest(String data) {
         response = new Response("303", "http://localhost:5000/", "");
         return true;
     }
