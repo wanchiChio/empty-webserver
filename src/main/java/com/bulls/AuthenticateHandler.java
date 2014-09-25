@@ -1,9 +1,8 @@
 package com.bulls;
 
-import com.sun.org.apache.xml.internal.security.exceptions.Base64DecodingException;
-import com.sun.org.apache.xml.internal.security.utils.Base64;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import java.util.regex.Pattern;
 
 public class AuthenticateHandler extends RequestHandler {
@@ -15,7 +14,7 @@ public class AuthenticateHandler extends RequestHandler {
         String auth = "";
         String[] lines = data.split("\n");
         for(int i=0; i < lines.length; i++){
-            boolean authExists = Pattern.matches("Authorization: Basic ", lines[i]);
+            boolean authExists = Pattern.matches("Authorization: Basic .*", lines[i]);
             if (authExists)  {
                 auth = lines[i];
                 break;
@@ -27,9 +26,16 @@ public class AuthenticateHandler extends RequestHandler {
             return true;
         }
         else {
+            String fields[] = auth.split(" ");
+            if (fields.length > 2 && decodeCredentials(fields[2]).equals("admin:hunter2") ) {
+                response = new Response("200", "", "Authentication required");
+                return true;
+            }
+            else {
 
-            response = new Response("401", "", "Authentication required");
-            return true;
+                response = new Response("401", "", "Authentication required");
+                return true;
+            }
         }
     }
 
@@ -46,14 +52,13 @@ public class AuthenticateHandler extends RequestHandler {
 
         String decoded = "";
         try {
-            decoded = new String(Base64.decode(encoded), "utf-8");
+            decoded = new String(Base64.getDecoder().decode(encoded), "utf-8");
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (Base64DecodingException e) {
             e.printStackTrace();
         }
 
         return decoded;
 
     }
+
 }
