@@ -4,6 +4,7 @@ package com.bulls;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.xml.bind.DatatypeConverter;
 import java.util.Base64;
 
 import static org.junit.Assert.assertEquals;
@@ -36,6 +37,9 @@ public class AuthenticateTest {
 
     @Test
     public void encodeCredentialsInHeader() throws Exception {
+
+        //String encoded = DatatypeConverter.printBase64Binary("admin:hunter2");
+
         String encoded = Base64.getEncoder().encodeToString("admin:hunter2".getBytes("utf-8"));
 
         handler.decodeCredentials(encoded);

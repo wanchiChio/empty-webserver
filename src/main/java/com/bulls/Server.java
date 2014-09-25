@@ -66,9 +66,10 @@ public class Server implements Runnable{
                     new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
-            RequestHandler handler = RequestHandlerFactory.generateRequestHandler(in.readLine());
+            String inputData = in.readLine();
+            RequestHandler handler = RequestHandlerFactory.generateRequestHandler(inputData);
 
-            if (handler.processRequest(""))
+            if (handler.processRequest(inputData))
                 out.println(handler.generateResponse());
             else
                 out.println(handler.generateDefaultResponse());;
