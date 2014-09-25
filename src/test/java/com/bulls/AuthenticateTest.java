@@ -48,7 +48,7 @@ public class AuthenticateTest {
     @Test
     public void ableToDecodeEncodedCredentials() throws Exception {
         String encoded = Base64.getEncoder().encodeToString("admin:hunter2".getBytes("utf-8"));
- 
+
         String decoded = handler.decodeCredentials(encoded);
 
         assertEquals("admin:hunter2", decoded);
