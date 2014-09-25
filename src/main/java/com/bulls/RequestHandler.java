@@ -54,7 +54,7 @@ public abstract class RequestHandler {
         return response.getRedirectPath();
     }
 
-    public abstract boolean processRequest();
+    public abstract boolean processRequest(String data);
 
     public String generateResponse() {
         return response.generateFullResponse();

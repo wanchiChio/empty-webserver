@@ -20,7 +20,7 @@ public class RedirectHandlerTest {
 
     @Test
     public void verifyResponse() throws Exception {
-        handler.processRequest();
+        handler.processRequest("");
 
         assertEquals("303", handler.getResponseCode());
         assertEquals("http://localhost:5000/", handler.getRequestPath());

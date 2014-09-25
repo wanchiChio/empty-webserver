@@ -6,7 +6,7 @@ package com.bulls;
 public class NotFoundHandler extends RequestHandler {
 
     @Override
-    public boolean processRequest() {
+    public boolean processRequest(String data) {
         response = new Response("404", "", "");
         return true;
     }

@@ -68,7 +68,7 @@ public class Server implements Runnable{
 
             RequestHandler handler = RequestHandlerFactory.generateRequestHandler(in.readLine());
 
-            if (handler.processRequest())
+            if (handler.processRequest(""))
                 out.println(handler.generateResponse());
             else
                 out.println(handler.generateDefaultResponse());;

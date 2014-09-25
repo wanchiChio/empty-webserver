@@ -12,7 +12,7 @@ public class RootHandlerTest {
     @Test
     public void testRootHandler() throws Exception {
         RootHandler handler = new RootHandler();
-        handler.processRequest();
+        handler.processRequest("");
 
         assertEquals("200", handler.getResponseCode());
     }
