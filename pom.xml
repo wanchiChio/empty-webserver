@@ -23,14 +23,6 @@
                     <outputDirectory>jars</outputDirectory>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <compilerVersion>1.8</compilerVersion>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
     <dependencies>
