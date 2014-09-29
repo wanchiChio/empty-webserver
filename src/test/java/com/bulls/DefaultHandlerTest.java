@@ -25,4 +25,5 @@ public class DefaultHandlerTest {
         assertEquals("GET /logs HTTP/1.1", handler.getResponseBody());
     }
 
+
 }

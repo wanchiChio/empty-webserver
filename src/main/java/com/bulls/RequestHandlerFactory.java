@@ -18,6 +18,8 @@ public class RequestHandlerFactory {
                 handler = new RedirectHandler();
             } else if (endPoint.equals("/logs")) {
                 handler = new AuthenticateHandler();
+            } else if (endPoint.equals("/method_options")){
+                handler = new MethodOptionHandler();
             } else {
                 handler = new DefaultHandler();
             }

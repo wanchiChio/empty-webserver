@@ -39,5 +39,13 @@ public class RequestHandlerFactoryTest {
         RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
         assertTrue(handler instanceof AuthenticateHandler);
     }
+
+    @Test
+    public void verifyRequestHandlerFactoryMethodOptions() throws Exception
+    {
+        String data = "OPTIONS /method_options HTTP/1.1";
+        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
+        assertTrue(handler instanceof MethodOptionHandler);
+    }
 }
 

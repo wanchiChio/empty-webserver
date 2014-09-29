@@ -41,6 +41,11 @@ public class Response {
         if (redirectPath.length() > 0)
             output += "\r\nLocation: " + redirectPath;
 
+        if (headers.size() > 0) {
+            output += "\r\n" + getHeaders();
+
+        }
+
         if (body.length() > 0)
             output += "\r\n\r\n" + body;
 

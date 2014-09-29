@@ -45,7 +45,17 @@ public class ResponseTest {
        response.addHeader("Allow: GET,OPTION");
        assertEquals("Allow: GET,OPTION", response.getHeaders());
     }
-    
 
+    @Test
+    public void verifyHeaderInfoInResponse() throws Exception
+    {
+        response.addHeader("Allow: GET,OPTION");
+
+        assertEquals("HTTP/1.1 " + response.getResponseCode() +
+                "\r\nLocation: " + response.getRedirectPath() +
+                "\r\n" + response.getHeaders() +
+                "\r\n\r\n" + response.getBody(), response.generateFullResponse());
+
+    }
 
 }
