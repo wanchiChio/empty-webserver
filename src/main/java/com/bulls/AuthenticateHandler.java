@@ -13,6 +13,7 @@ public class AuthenticateHandler extends RequestHandler {
     public boolean processRequest(String data) {
         String auth = "";
         String[] lines = data.split("\n");
+
         for(int i=0; i < lines.length; i++){
             boolean authExists = Pattern.matches("Authorization: Basic .*", lines[i]);
             if (authExists)  {

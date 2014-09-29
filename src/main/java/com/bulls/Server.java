@@ -69,6 +69,11 @@ public class Server implements Runnable{
             String inputData = in.readLine();
             RequestHandler handler = RequestHandlerFactory.generateRequestHandler(inputData);
 
+            String line;
+            while ((line = in.readLine()) != null && line.length()!= 0) {
+                inputData += '\n' + line;
+            }
+
             if (handler.processRequest(inputData))
                 out.println(handler.generateResponse());
             else
