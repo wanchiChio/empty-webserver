@@ -20,9 +20,15 @@ public class Server implements Runnable{
         try {
             Server server = new Server(Integer.parseInt(args[1]));
             server.start();
-            System.out.println("Server started...");
+            System.out.print("Starting server");
+            for (int i = 0; i < 4; i++){
+                System.out.print(".");
+                Thread.sleep(1000);
+            }
+            System.out.println("\nServer started!");
+
         } catch (Exception e) {
-            System.out.println("Failed to start server: " + e.getMessage() + "...");
+            System.out.println("Failed to start server: " + e.getMessage());
         }
     }
 
