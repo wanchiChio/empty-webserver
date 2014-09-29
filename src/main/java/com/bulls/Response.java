@@ -24,7 +24,6 @@ public class Response {
         return responseCode;
     }
 
-
     public String getBody() {
         return body;
     }

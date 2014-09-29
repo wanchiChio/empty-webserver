@@ -20,7 +20,7 @@ public class Server implements Runnable{
         try {
             Server server = new Server(Integer.parseInt(args[1]));
             server.start();
-            System.out.print("Starting server");
+            System.out.print("Starting server on port: " +server.getPort());
             for (int i = 0; i < 4; i++){
                 System.out.print(".");
                 Thread.sleep(1000);
