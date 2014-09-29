@@ -42,14 +42,14 @@ public class FileHandlerTest {
 
     @Test
     public void testIfFile1Exists() throws Exception {
-        boolean result = handler.processFile("../cob_spec/public/file1");
+        boolean result = handler.processFile("src/main/resources/public/file1");
 
         assertEquals(true, result);
     }
 
     @Test
     public void testIfTextFileTxtExists() throws Exception {
-        boolean result = handler.processFile("../cob_spec/public/text-file.txt");
+        boolean result = handler.processFile("src/main/resources/public/text-file.txt");
 
         assertEquals(true, result);
     }
