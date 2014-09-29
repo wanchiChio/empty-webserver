@@ -39,4 +39,13 @@ public class ResponseTest {
     }
 
 
+    @Test
+    public void verifyHeader() throws Exception
+    {
+       response.addHeader("Allow: GET,OPTION");
+       assertEquals("Allow: GET,OPTION", response.getHeaders());
+    }
+    
+
+
 }

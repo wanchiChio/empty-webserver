@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by wanchi.chio on 9/24/14.
  */
-public class ReqeustHandlerFactoryTest {
+public class RequestHandlerFactoryTest {
 
     @Test
     public void verifyRequestHandlerFactory404() throws Exception {
@@ -22,7 +22,7 @@ public class ReqeustHandlerFactoryTest {
         String data = "GET / HTTP/1.1";
         RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
 
-        assertTrue(handler instanceof RootHandler);
+        assertTrue(handler instanceof DefaultHandler);
     }
 
     @Test

@@ -1,10 +1,17 @@
 package com.bulls;
 
+
+
+
+
+import java.util.ArrayList;
+
 public class Response {
 
     protected String responseCode;
     protected String redirectPath;
     protected String body;
+    private ArrayList<String> headers;
 
     public Response() {}
 
@@ -12,6 +19,7 @@ public class Response {
         this.responseCode = responseCode;
         this.redirectPath = redirectPath;
         this.body = body;
+        this.headers = new ArrayList<String>();
     }
 
     public String getResponseCode() {
@@ -38,4 +46,15 @@ public class Response {
 
         return output;
     }
+
+    public String getHeaders() {
+
+        return String.join("\r\n", headers);
+    }
+
+    public void addHeader(String headerLine) {
+        headers.add(headerLine);
+    }
+
+
 }

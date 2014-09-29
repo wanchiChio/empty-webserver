@@ -63,4 +63,9 @@ public abstract class RequestHandler {
     public String getResponseBody() {
         return response.getBody();
     }
+
+    public String getResponseHeader()
+    {
+        return response.getHeaders();
+    };
 }

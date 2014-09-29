@@ -1,7 +1,5 @@
 package com.bulls;
 
-import java.net.Authenticator;
-
 /**
  * Created by wanchi.chio on 9/23/14.
  */
@@ -21,7 +19,7 @@ public class RequestHandlerFactory {
             } else if (endPoint.equals("/logs")) {
                 handler = new AuthenticateHandler();
             } else {
-                handler = new RootHandler();
+                handler = new DefaultHandler();
             }
 
             handler.setEndPoint(endPoint);
