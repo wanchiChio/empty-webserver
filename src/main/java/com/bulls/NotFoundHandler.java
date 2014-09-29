@@ -7,7 +7,7 @@ public class NotFoundHandler extends RequestHandler {
 
     @Override
     public boolean processRequest(String data) {
-        response = new Response("404", "", "");
+        response = new Response("404", "");
         return true;
     }
 }

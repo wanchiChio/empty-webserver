@@ -9,16 +9,14 @@ import java.util.ArrayList;
 public class Response {
 
     protected String responseCode;
-    protected String redirectPath;
     protected String body;
     private ArrayList<String> headers;
 
     public Response() {}
 
-    public Response(String responseCode, String redirectPath, String body) {
+    public Response(String responseCode, String responseBody) {
         this.responseCode = responseCode;
-        this.redirectPath = redirectPath;
-        this.body = body;
+        this.body= responseBody;
         this.headers = new ArrayList<String>();
     }
 
@@ -26,9 +24,6 @@ public class Response {
         return responseCode;
     }
 
-    public String getRedirectPath() {
-        return redirectPath;
-    }
 
     public String getBody() {
         return body;
@@ -38,8 +33,6 @@ public class Response {
 
         String output = "HTTP/1.1 " + responseCode;
 
-        if (redirectPath.length() > 0)
-            output += "\r\nLocation: " + redirectPath;
 
         if (headers.size() > 0) {
             output += "\r\n" + getHeaders();

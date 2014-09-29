@@ -34,14 +34,6 @@ public class RequestHandlerTest {
     }
 
     @Test
-    public void verifyRequestPath() throws Exception {
-        MockRequestHandler handler = new MockRequestHandler();
-        handler.processRequest("");
-
-        assertEquals("/mock", handler.getRequestPath());
-    }
-
-    @Test
     public void verifyDefaultResponse() throws Exception {
         MockRequestHandler handler = new MockRequestHandler();
 
@@ -53,7 +45,7 @@ public class RequestHandlerTest {
         MockRequestHandler handler = new MockRequestHandler();
         handler.processRequest("");
 
-        assertEquals("HTTP/1.1 888\r\nLocation: /mock", handler.generateResponse());
+        assertEquals("HTTP/1.1 888", handler.generateResponse());
     }
 
 }

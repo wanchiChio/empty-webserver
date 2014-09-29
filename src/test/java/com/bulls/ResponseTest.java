@@ -13,17 +13,12 @@ public class ResponseTest {
 
     @Before
     public void setUp() {
-        response = new Response("124", "http://www.ticketmaster.com/", "Message");
+        response = new Response("124", "Message");
     }
 
     @Test
     public void verifyResponseCode() throws Exception {
         assertEquals("124", response.getResponseCode());
-    }
-
-    @Test
-    public void verifyRedirectPath() throws Exception {
-        assertEquals("http://www.ticketmaster.com/", response.getRedirectPath());
     }
 
     @Test
@@ -34,7 +29,6 @@ public class ResponseTest {
     @Test
     public void verifyResponseOutput() throws Exception {
        assertEquals("HTTP/1.1 " + response.getResponseCode() +
-               "\r\nLocation: " + response.getRedirectPath() +
                "\r\n\r\n" + response.getBody(), response.generateFullResponse());
     }
 
@@ -52,7 +46,6 @@ public class ResponseTest {
         response.addHeader("Allow: GET,OPTION");
 
         assertEquals("HTTP/1.1 " + response.getResponseCode() +
-                "\r\nLocation: " + response.getRedirectPath() +
                 "\r\n" + response.getHeaders() +
                 "\r\n\r\n" + response.getBody(), response.generateFullResponse());
 

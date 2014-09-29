@@ -50,9 +50,9 @@ public abstract class RequestHandler {
         return response.getResponseCode();
     }
 
-    public String getRequestPath() {
-        return response.getRedirectPath();
-    }
+    //public String getRequestPath() {
+    //    return response.getRedirectPath();
+    //}
 
     public abstract boolean processRequest(String data);
 

@@ -23,18 +23,18 @@ public class AuthenticateHandler extends RequestHandler {
         }
 
         if (auth.length() <= 0) {
-            response = new Response("401", "", "Authentication required");
+            response = new Response("401", "Authentication required");
             return true;
         }
         else {
             String fields[] = auth.split(" ");
             if (fields.length > 2 && decodeCredentials(fields[2]).equals("admin:hunter2") ) {
-                response = new Response("200", "", "Authentication required");
+                response = new Response("200", "Authentication required");
                 return true;
             }
             else {
 
-                response = new Response("401", "", "Authentication required");
+                response = new Response("401", "Authentication required");
                 return true;
             }
         }

@@ -9,7 +9,7 @@ public class DefaultHandler extends RequestHandler {
     public boolean processRequest(String data) {
         String[] lines = data.split("\n");
 
-        response = new Response("200", "", lines[0]);
+        response = new Response("200", lines[0]);
         return true;
     }
 
