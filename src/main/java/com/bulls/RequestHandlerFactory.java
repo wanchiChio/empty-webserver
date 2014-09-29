@@ -20,6 +20,8 @@ public class RequestHandlerFactory {
                 handler = new AuthenticateHandler();
             } else if (endPoint.equals("/method_options")){
                 handler = new MethodOptionHandler();
+            } else if (endPoint.equals("/file1") || endPoint.equals("/text-file.txt")){
+                handler = new FileHandler();
             } else {
                 handler = new DefaultHandler();
             }

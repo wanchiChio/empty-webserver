@@ -47,5 +47,21 @@ public class RequestHandlerFactoryTest {
         RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
         assertTrue(handler instanceof MethodOptionHandler);
     }
+
+    @Test
+    public void verifyRequestHandlerFactoryFileHandlerPut() throws Exception
+    {
+        String data = "PUT /file1 HTTP/1.1";
+        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
+        assertTrue(handler instanceof FileHandler);
+    }
+
+    @Test
+    public void verifyRequestHandlerFactoryFileHandlerPost() throws Exception
+    {
+        String data = "POST /text-file.txt HTTP/1.1";
+        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
+        assertTrue(handler instanceof FileHandler);
+    }
 }
 
