@@ -37,9 +37,8 @@ public class ServerTest {
 
     @Test
     public void testGenerateOutputClosesSocket() throws Exception {
-        Mocket mocket = new Mocket();
-        server.generateOutput(mocket.getSocket());
-
+        Mocket mocket = new Mocket("GET /logs HTTP/1.1");
+        server.generateOutput(mocket);
         assertTrue(mocket.isClosed());
     }
 
