@@ -43,4 +43,11 @@ public class ServerTest {
         assertTrue(mocket.isClosed());
     }
 
+    @Test
+    public void itReturnsTheDirectorySet() throws Exception {
+        server.setDirectory("src/main/resources/public");
+
+        assertEquals("src/main/resources/public", server.getDirectory());
+    }
+
 }
