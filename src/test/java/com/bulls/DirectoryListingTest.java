@@ -27,7 +27,7 @@ public class DirectoryListingTest {
 
     @Test
     public void itReturns200() throws Exception {
-        Server.setDirectory("../");
+        Server.setDirectory("../src/main/resources/public");
         handler.processRequest("GET / HTTP/1.1");
         assertEquals("200", handler.getResponseCode());
     }
@@ -46,4 +46,11 @@ public class DirectoryListingTest {
         assertThat(listings, containsString("public"));
     }
 
+    @Test
+    public void itRendersFileLink() throws Exception
+    {
+        String listings = handler.getDirectoryListing("src/main/resources/public/");
+        assertThat(listings, containsString("</a>"));
+       
+    }
 }

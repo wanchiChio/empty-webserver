@@ -24,13 +24,23 @@ public class DirectoryHandler extends RequestHandler {
         File[] listings = getDirectoryContents(path);
         StringBuilder newListing = new StringBuilder("");
 
+        newListing.append("<html>");
+        newListing.append("<body>");
+        if (path.length() > 0)
+            newListing.append("<p>" + path);
+
         if (listings != null && listings.length > 0) {
             for (File f : listings) {
                 if (f == null) continue;
-                newListing.append(f.getPath());
+
+                newListing.append("<p><a href=\"" + f.getName() + "\">" +
+                        f.getName() + "</a>");
+
             }
 
         }
+        newListing.append("</html>");
+        newListing.append("</body>");
         return newListing.toString();
 
     }
