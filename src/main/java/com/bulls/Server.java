@@ -59,7 +59,8 @@ public class Server implements Runnable{
         while (threadRun) {
             try {
                 Socket socket = serverSocket.accept();
-                generateOutput(socket);
+                ResponseManager responseManager = new ResponseManager();
+                responseManager.generateOutput(socket);
 
             } catch(IOException e) {
             	System.out.println("Failed to start server: " + e.getMessage());
@@ -69,36 +70,6 @@ public class Server implements Runnable{
         }
     }
 
-    public void generateOutput (Socket socket) {
-        try {
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(socket.getInputStream()));
-            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-
-            String inputData = in.readLine();
-            RequestHandler handler = RequestHandlerFactory.generateRequestHandler(inputData);
-
-            String line;
-            while ((line = in.readLine()) != null && line.length()!= 0) {
-                inputData += '\n' + line;
-            }
-
-            if (handler.processRequest(inputData))
-                out.println(handler.generateResponse());
-            else
-                out.println(handler.generateDefaultResponse());;
-
-            out.flush();
-        } catch (Exception e) {
-            System.out.println("Server Error");
-        } finally {
-            try {
-                socket.close();
-            } catch (Exception e) {
-                System.out.println("Could not close socket");
-            }
-        }
-    }
 
     public void setDirectory(String directory) {
         this.directory = directory;

@@ -37,6 +37,10 @@ public class ResponseTest {
     public void verifyHeader() throws Exception
     {
        response.addHeader("Allow: GET,OPTION");
+
+       //response.addHeader("Allow", "GET,OPTION");
+
+
        assertEquals("Allow: GET,OPTION", response.getHeaders());
     }
 
@@ -50,5 +54,8 @@ public class ResponseTest {
                 "\r\n\r\n" + response.getBody(), response.generateFullResponse());
 
     }
+
+
+
 
 }

@@ -35,18 +35,14 @@ public class ServerTest {
         assertEquals(true, server.getServerSocket().isClosed());
     }
 
-    @Test
-    public void testGenerateOutputClosesSocket() throws Exception {
-        Mocket mocket = new Mocket("GET /logs HTTP/1.1");
-        server.generateOutput(mocket);
-        assertTrue(mocket.isClosed());
-    }
 
     @Test
     public void itReturnsTheDirectorySet() throws Exception {
         server.setDirectory("src/main/resources/public");
 
         assertEquals("src/main/resources/public", server.getDirectory());
+
+
     }
 
 }

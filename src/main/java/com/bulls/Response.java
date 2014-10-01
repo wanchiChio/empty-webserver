@@ -12,6 +12,7 @@ public class Response {
     protected String body;
     private ArrayList<String> headers;
 
+
     public Response() {}
 
     public Response(String responseCode, String responseBody) {
@@ -54,4 +55,8 @@ public class Response {
     }
 
 
+    public void addHeader(String tag, String value) {
+
+
+    }
 }
