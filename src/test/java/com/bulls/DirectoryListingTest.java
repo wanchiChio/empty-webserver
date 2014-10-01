@@ -1,13 +1,14 @@
 package com.bulls;
 
 import org.hamcrest.CoreMatchers;
-import org.hamcrest.Matchers;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
 
-import static org.hamcrest.Matchers.containsString;
+
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
@@ -26,8 +27,8 @@ public class DirectoryListingTest {
 
     @Test
     public void itReturns200() throws Exception {
+        Server.setDirectory("../");
         handler.processRequest("GET / HTTP/1.1");
-
         assertEquals("200", handler.getResponseCode());
     }
 

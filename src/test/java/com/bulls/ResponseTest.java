@@ -36,13 +36,21 @@ public class ResponseTest {
     @Test
     public void verifyHeader() throws Exception
     {
-       response.addHeader("Allow: GET,OPTION");
-
-       //response.addHeader("Allow", "GET,OPTION");
-
+       response.addHeader("Allow", "HAHA");
+       response.addHeader("Allow", "GET,OPTION");
 
        assertEquals("Allow: GET,OPTION", response.getHeaders());
     }
+    
+    @Test
+    public void verifyMultipleHeaders() throws Exception
+    {
+        response.addHeader("OPTIONS", "ABCD,EFG");
+        response.addHeader("Allow", "GET,OPTION");
+
+        assertEquals("OPTIONS: ABCD,EFG\r\nAllow: GET,OPTION", response.getHeaders());
+    }
+    
 
     @Test
     public void verifyHeaderInfoInResponse() throws Exception

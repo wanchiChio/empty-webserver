@@ -9,7 +9,7 @@ public class MethodOptionHandler extends RequestHandler {
         response = new Response("200", "");
 
         if(this.getHttpMethod() != null && this.getHttpMethod().equals("OPTIONS")) {
-            response.addHeader("Allow: GET,HEAD,POST,OPTIONS,PUT");
+            response.addHeader("Allow", "GET,HEAD,POST,OPTIONS,PUT");
         }
 
         return true;

@@ -22,7 +22,7 @@ public class RequestHandlerFactoryTest {
         String data = "GET / HTTP/1.1";
         RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
 
-        assertTrue(handler instanceof DefaultHandler);
+        assertTrue(handler instanceof DirectoryHandler);
     }
 
     @Test
@@ -47,6 +47,23 @@ public class RequestHandlerFactoryTest {
         RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
         assertTrue(handler instanceof MethodOptionHandler);
     }
+    @Test
+    public void verifyRequestHandlerFactoryFormHandlerPut() throws Exception
+    {
+        String data = "PUT /form HTTP/1.1";
+        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
+        assertTrue(handler instanceof FormHandler);
+    }
+
+    @Test
+    public void verifyRequestHandlerFactoryFormHandlerPost() throws Exception
+    {
+        String data = "POST /form HTTP/1.1";
+        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
+        assertTrue(handler instanceof FormHandler);
+    }
+
+
 
     @Test
     public void verifyRequestHandlerFactoryFileHandlerPut() throws Exception

@@ -12,18 +12,20 @@ public class RequestHandlerFactory {
 
             RequestHandler handler;
             String endPoint = parsed[1];
-            if (endPoint.equals("/foobar")) {
-                handler = new NotFoundHandler();
+            if (endPoint.equals("/")) {
+                handler = new DirectoryHandler();
             } else if (endPoint.equals("/redirect")) {
                 handler = new RedirectHandler();
             } else if (endPoint.equals("/logs")) {
                 handler = new AuthenticateHandler();
-            } else if (endPoint.equals("/method_options")){
+            } else if (endPoint.equals("/method_options")) {
                 handler = new MethodOptionHandler();
+            } else if (endPoint.equals("/form")) {
+                handler = new FormHandler();
             } else if (endPoint.equals("/file1") || endPoint.equals("/text-file.txt")){
                 handler = new FileHandler();
             } else {
-                handler = new DefaultHandler();
+               handler = new NotFoundHandler();
             }
 
             handler.setEndPoint(endPoint);

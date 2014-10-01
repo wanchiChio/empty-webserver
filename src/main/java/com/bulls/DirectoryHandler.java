@@ -9,27 +9,28 @@ public class DirectoryHandler extends RequestHandler {
     @Override
     public boolean processRequest(String data) {
 
-        if (Server.getDirectory().equals("/")) {
-            getDirectoryListing(data);
+        String responseBody = "";
+        if (Server.getDirectory().length() > 0) {
+            responseBody = getDirectoryListing(Server.getDirectory());
         }
-
-        response = new Response("200", getDirectoryListing(data));
-
+        response = new Response("200", responseBody);
 
         return true;
     }
 
-    public String getDirectoryListing(String listing) {
+    public String getDirectoryListing(String path) {
 
-        StringBuilder newListing = new StringBuilder(listing);
 
-        File[] listings = getDirectoryContents(listing);
+        File[] listings = getDirectoryContents(path);
+        StringBuilder newListing = new StringBuilder("");
 
-        for (int i = 0; i < listings.length ; i++){
+        if (listings != null && listings.length > 0) {
+            for (File f : listings) {
+                if (f == null) continue;
+                newListing.append(f.getPath());
+            }
 
-            newListing.append(listings[i]);
-    };
-        //System.out.println(newListing);
+        }
         return newListing.toString();
 
     }
@@ -37,12 +38,6 @@ public class DirectoryHandler extends RequestHandler {
     public File[] getDirectoryContents(String path) {
 
         File file = new File(path);
-        File[] files = file.listFiles();
-
-//        for (int i = 0; i < files.length; i++) {
-//            //System.out.println(files[i]);
-//        }
-
-        return files;
+        return file.listFiles();
     }
 }
