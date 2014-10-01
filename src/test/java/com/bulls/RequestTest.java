@@ -1,18 +1,11 @@
 package com.bulls;
 
-import junit.framework.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
 public class RequestTest {
     Request request;
-
-    @Before
-    public void setup() {
-
-    }
 
     @Test
     public void receivesRequest() throws Exception {
@@ -35,5 +28,15 @@ public class RequestTest {
         assertEquals("text/html", request.getHeaderByType("Accept"));
         assertEquals("json", request.getHeaderByType("Content-type"));
         assertEquals(null, request.getHeaderByType("fake"));
+    }
+
+    @Test
+    public void parsesBodyByType() throws Exception {
+        request = new Request("GET /form HTTP/1.1\nContent:stuff\nAccept:text/html\nContent-type:json");
+        assertEquals(null, request.getBodyByType("Data"));
+
+        Request request1 = new Request("GET /form HTTP/1.1\nContent:stuff\nAccept:text/html\nContent-type:json\r\nData:stuff&Data1:stuff1");
+        assertEquals("stuff", request1.getBodyByType("Data") );
+        assertEquals("stuff1", request1.getBodyByType("Data1") );
     }
 }
