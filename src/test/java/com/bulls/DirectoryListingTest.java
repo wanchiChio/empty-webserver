@@ -1,12 +1,16 @@
 package com.bulls;
 
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by anton.perez on 9/30/14.
@@ -32,6 +36,13 @@ public class DirectoryListingTest {
         File[] result = handler.getDirectoryContents("src/main/resources/public/");
 
         assertNotNull(result);
+    }
+    
+    @Test
+    public void itProcessesTheBody() throws Exception
+    {
+        String listings = handler.getDirectoryListing("src/main/resources/public/");
+        assertThat(listings, containsString("public"));
     }
 
 }

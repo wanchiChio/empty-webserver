@@ -11,15 +11,22 @@ public class Server implements Runnable{
 
     private ServerSocket serverSocket;
     private boolean threadRun = true;
-    private String directory;
+    private static String directory;
 
     public Server(int port) throws IOException {
         createServerSocket(port);
     }
 
+    public Server(int port, String directory) throws IOException {
+        createServerSocket(port);
+        Server.setDirectory(directory);
+    }
+
     public static void main(String[] args) {
         try {
-            Server server = new Server(Integer.parseInt(args[1]));
+            int port = Integer.parseInt(args[1]);
+            String directory = args[3];
+            Server server = new Server(port, directory);
             server.start();
 
             System.out.print("Starting server on port: " + server.getPort());
@@ -71,11 +78,11 @@ public class Server implements Runnable{
     }
 
 
-    public void setDirectory(String directory) {
-        this.directory = directory;
+    public static void setDirectory(String inputDirectory) {
+        directory = inputDirectory;
     }
 
-    public String getDirectory() {
+    public static String getDirectory() {
         return directory;
     }
 }
