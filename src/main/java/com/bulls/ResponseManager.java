@@ -42,7 +42,7 @@ public class ResponseManager {
     }
 
     private String getInput(BufferedInputStream reader) throws Exception {
-        List<Byte> byteL = new ArrayList<>();
+        List<Byte> byteL = new ArrayList();
         byte[] byteArray;
         boolean newLine = false;
 
