@@ -25,13 +25,13 @@ public class Request {
     private void parseRequest() {
         String[] splitArray = rawRequest.split("\r\n");
 
-        headerMap = new HashMap<String, String>();
+        headerMap = new HashMap<>();
         String[] headerArray = splitArray[0].split("\n");
         parseHeaderType(headerArray[0]);
         parseHeader(headerArray);
 
         if (splitArray.length > 1) {
-            bodyMap = new HashMap<String, String>();
+            bodyMap = new HashMap<>();
             String[] bodyArray = splitArray[1].split("&");
             parseBody(bodyArray);
         }
@@ -45,7 +45,7 @@ public class Request {
     }
 
     private void parseHeader(String[] headerArray) {
-        headerMap = new HashMap<String, String>();
+        headerMap = new HashMap<>();
         for (int i = 1; i < headerArray.length; i++) {
             String[] lineArray = headerArray[i].split(":");
             headerMap.put(lineArray[0], lineArray[1]);

@@ -12,7 +12,8 @@ public class RequestHandlerFactoryTest {
     @Test
     public void verifyRequestHandlerFactory404() throws Exception {
         String data = "GET /foobar HTTP/1.1";
-        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
+        Request request = new Request(data);
+        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(request);
 
         assertTrue(handler instanceof NotFoundHandler);
     }
@@ -20,7 +21,9 @@ public class RequestHandlerFactoryTest {
     @Test
     public void verifyRequestHandlerFactoryRoot() throws Exception {
         String data = "GET / HTTP/1.1";
-        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
+        Request request = new Request(data);
+
+        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(request);
 
         assertTrue(handler instanceof DirectoryHandler);
     }
@@ -28,7 +31,9 @@ public class RequestHandlerFactoryTest {
     @Test
     public void verifyRequestHandlerFactoryRedirect() throws Exception {
         String data = "GET /redirect HTTP/1.1";
-        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
+        Request request = new Request(data);
+
+        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(request);
 
         assertTrue(handler instanceof RedirectHandler);
     }
@@ -36,7 +41,9 @@ public class RequestHandlerFactoryTest {
     @Test
     public void verifyRequestHandlerFactoryAuthenticate() throws Exception {
         String data = "GET /logs HTTP/1.1";
-        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
+        Request request = new Request(data);
+
+        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(request);
         assertTrue(handler instanceof AuthenticateHandler);
     }
 
@@ -44,14 +51,18 @@ public class RequestHandlerFactoryTest {
     public void verifyRequestHandlerFactoryMethodOptions() throws Exception
     {
         String data = "OPTIONS /method_options HTTP/1.1";
-        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
+        Request request = new Request(data);
+
+        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(request);
         assertTrue(handler instanceof MethodOptionHandler);
     }
     @Test
     public void verifyRequestHandlerFactoryFormHandlerPut() throws Exception
     {
         String data = "PUT /form HTTP/1.1";
-        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
+        Request request = new Request(data);
+
+        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(request);
         assertTrue(handler instanceof FormHandler);
     }
 
@@ -59,7 +70,9 @@ public class RequestHandlerFactoryTest {
     public void verifyRequestHandlerFactoryFormHandlerPost() throws Exception
     {
         String data = "POST /form HTTP/1.1";
-        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
+        Request request = new Request(data);
+
+        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(request);
         assertTrue(handler instanceof FormHandler);
     }
 
@@ -69,7 +82,9 @@ public class RequestHandlerFactoryTest {
     public void verifyRequestHandlerFactoryFileHandlerPut() throws Exception
     {
         String data = "PUT /file1 HTTP/1.1";
-        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
+        Request request = new Request(data);
+
+        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(request);
         assertTrue(handler instanceof FileHandler);
     }
 
@@ -77,7 +92,9 @@ public class RequestHandlerFactoryTest {
     public void verifyRequestHandlerFactoryFileHandlerPost() throws Exception
     {
         String data = "POST /text-file.txt HTTP/1.1";
-        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(data);
+        Request request = new Request(data);
+
+        RequestHandler handler = RequestHandlerFactory.generateRequestHandler(request);
         assertTrue(handler instanceof FileHandler);
     }
 }

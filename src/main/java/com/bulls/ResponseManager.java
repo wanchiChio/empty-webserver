@@ -1,9 +1,9 @@
 package com.bulls;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by wanchi.chio on 10/1/14.
@@ -13,17 +13,15 @@ public class ResponseManager {
 
     public void generateOutput(Socket socket) {
         try {
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(socket.getInputStream()));
+
+            BufferedInputStream reader = new BufferedInputStream(socket.getInputStream());
+            String inputData = getInput(reader);
+
+            Request request = new Request(inputData);
+            RequestHandler handler = RequestHandlerFactory.generateRequestHandler(request);
+
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
-            String inputData = in.readLine();
-            RequestHandler handler = RequestHandlerFactory.generateRequestHandler(inputData);
-
-            String line;
-            while ((line = in.readLine()) != null && line.length()!= 0) {
-                inputData += '\n' + line;
-            }
 
             if (handler.processRequest(inputData))
                 out.println(handler.generateResponse());
@@ -41,5 +39,34 @@ public class ResponseManager {
             }
         }
 
+    }
+
+    private String getInput(BufferedInputStream reader) throws Exception {
+        List<Byte> byteL = new ArrayList<>();
+        byte[] byteArray;
+        boolean newLine = false;
+
+        int b;
+        while ((b = reader.read()) != -1) {
+            if (b != 13) {
+                if (b == 10) {
+                    if (newLine) {
+                        break;
+                    }
+                    newLine = true;
+                } else {
+                    newLine = false;
+                }
+                byteL.add((byte) b);
+            }
+        }
+
+        byteArray = new byte[byteL.size()];
+
+        for (int i = 0; i < byteL.size(); i++) {
+            byteArray[i] = byteL.get(i);
+        }
+
+        return (new String(byteArray, "UTF-8"));
     }
 }
