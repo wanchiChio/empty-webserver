@@ -7,7 +7,7 @@ public class FormHandler extends RequestHandler{
 
     @Override
     public boolean processRequest(String data) {
-        response = new Response("200", "");
+        response = new Response("200", "You're in the FormHandler, yo!");
         return true;
     }
 }

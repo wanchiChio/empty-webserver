@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by anton.perez on 9/29/14.
@@ -42,15 +43,15 @@ public class FileHandlerTest {
 
     @Test
     public void testIfFile1Exists() throws Exception {
-        boolean result = handler.processFile("src/main/resources/public/file1");
+        String result = handler.readFile("src/main/resources/public/file1");
 
-        assertEquals(true, result);
+        assertNotNull(result);
     }
 
     @Test
     public void testIfTextFileTxtExists() throws Exception {
-        boolean result = handler.processFile("src/main/resources/public/text-file.txt");
+        String result = handler.readFile("src/main/resources/public/text-file.txt");
 
-        assertEquals(true, result);
+        assertNotNull(result);
     }
 }

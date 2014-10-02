@@ -30,7 +30,7 @@ public class Server implements Runnable{
             System.out.print("Starting server on port: " + server.getPort());
             for (int i = 0; i < 4; i++){
                 System.out.print(".");
-                Thread.sleep(1000);
+                Thread.sleep(500);
             }
             System.out.println("\nServer started!");
 
