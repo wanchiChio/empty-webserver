@@ -11,21 +11,19 @@ public class RequestHandlerFactory {
         String method = request.getMethod();
 
         RequestHandler handler;
-        if (endPoint.equals("/")) {
+        if (endPoint.equals("/"))
             handler = new DirectoryHandler();
-        } else if (endPoint.equals("/redirect")) {
-            handler = new RedirectHandler();
-        } else if (endPoint.equals("/logs")) {
-            handler = new AuthenticateHandler();
-        } else if (endPoint.equals("/method_options")) {
-            handler = new MethodOptionHandler();
-        } else if (endPoint.equals("/form")) {
-            handler = new FormHandler();
-        } else if (endPoint.equals("/file1") || endPoint.equals("/text-file.txt")){
-            handler = new FileHandler();
-        } else {
-            handler = new NotFoundHandler();
-        }
+        else if (endPoint.equals("/redirect"))
+          handler = new RedirectHandler();
+        else if (endPoint.equals("/logs"))
+          handler = new AuthenticateHandler();
+        else if (endPoint.equals("/method_options"))
+          handler = new MethodOptionHandler();
+        else if (endPoint.equals("/form"))
+          handler = new FormHandler();
+        else
+          handler = new FileHandler();
+
 
         handler.setEndPoint(endPoint);
         handler.setHttpMethod(method);

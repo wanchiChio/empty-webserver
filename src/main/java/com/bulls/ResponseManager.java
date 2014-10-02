@@ -21,7 +21,6 @@ public class ResponseManager {
 
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
-
             if (handler.processRequest(inputData))
                 out.println(handler.generateResponse());
             else
@@ -29,7 +28,7 @@ public class ResponseManager {
 
             out.flush();
         } catch (Exception e) {
-            System.out.println("Server Error");
+            System.out.println("Could not generate output");
         } finally {
             try {
                 socket.close();

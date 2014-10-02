@@ -19,13 +19,6 @@ public class FileHandlerTest {
     }
 
     @Test
-    public void testResponseCode() throws Exception {
-        handler.processRequest("");
-
-        assertEquals("200", handler.getResponseCode());
-    }
-
-    @Test
     public void verifyPutMethodIsNotAllowed() throws Exception {
         handler.setHttpMethod("PUT");
         handler.processRequest("PUT /file1 HTTP/1.1");
@@ -54,4 +47,21 @@ public class FileHandlerTest {
 
         assertNotNull(result);
     }
+
+    @Test
+    public void testNonExistentPathReturns404() throws Exception {
+        handler.setHttpMethod("GET");
+        handler.processRequest("GET /nonexistent HTTP/1.1");
+
+        assertEquals("404", handler.getResponseCode());
+    }
+
+    @Test
+    public void testNonExistentPathReturns404Body() throws Exception {
+        handler.setHttpMethod("GET");
+        handler.processRequest("GET /nonexistent HTTP/1.1");
+
+        assertEquals("404! What you're looking for ain't here, yo!", handler.getResponseBody());
+    }
+
 }

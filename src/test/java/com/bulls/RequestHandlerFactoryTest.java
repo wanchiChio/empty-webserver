@@ -15,7 +15,7 @@ public class RequestHandlerFactoryTest {
         Request request = new Request(data);
         RequestHandler handler = RequestHandlerFactory.generateRequestHandler(request);
 
-        assertTrue(handler instanceof NotFoundHandler);
+        assertTrue(handler instanceof FileHandler);
     }
 
     @Test

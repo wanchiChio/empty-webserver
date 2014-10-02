@@ -12,14 +12,22 @@ public class FileHandler extends RequestHandler {
     @Override
     public boolean processRequest(String data) {
         if (this.getHttpMethod() != null &&
-                (this.getHttpMethod().equals("PUT") || this.getHttpMethod().equals("POST")))
-            response = new Response("405", "");
-        else if (endPoint != null)
-            response = new Response("200", readFile(Server.getDirectory().concat(endPoint)));
-        else
-            response = new Response("200", "");
+                (this.getHttpMethod().equals("PUT") || this.getHttpMethod().equals("POST"))) {
+            response = new Response("405", "Method not allowed");
+        } else if (this.getHttpMethod().equals("GET") && endPoint != null) {
+            String content = readFile(Server.getDirectory().concat(endPoint));
+            if (content != null)
+                response = new Response("200", content);
+            else
+                generate404Response();
+        } else
+            generate404Response();
 
         return true;
+    }
+
+    private void generate404Response() {
+        response = new Response("404", "404! What you're looking for ain't here, yo!");;
     }
 
     public String readFile(String filePathString) {
