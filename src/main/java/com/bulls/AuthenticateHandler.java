@@ -31,7 +31,6 @@ public class AuthenticateHandler extends RequestHandler {
                 response = new Response("200", "Authentication required");
                 return true;
             } else {
-
                 response = new Response("401", "Authentication required");
                 return true;
             }

@@ -17,15 +17,6 @@ public abstract class RequestHandler {
         return "HTTP/1.0 404 Not Found";
     }
 
-    public void parseInput(String data) {
-        String[] parsed = data.split(" ");
-
-        if (parsed != null && parsed.length > 1) {
-            setEndPoint(parsed[1]);
-            setHttpMethod(parsed[0]);
-        }
-    }
-
     public String getEndPoint() {
         return endPoint;
     }
