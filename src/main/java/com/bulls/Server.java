@@ -1,9 +1,6 @@
 package com.bulls;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -24,8 +21,9 @@ public class Server implements Runnable{
 
     public static void main(String[] args) {
         try {
-            int port = Integer.parseInt(args[1]);
-            String directory = args[3];
+            int port = 5000;
+            String directory = "src/main/resources/public";
+
             Server server = new Server(port, directory);
             server.start();
 
@@ -76,7 +74,6 @@ public class Server implements Runnable{
             }
         }
     }
-
 
     public static void setDirectory(String inputDirectory) {
         directory = inputDirectory;

@@ -37,7 +37,6 @@ public class Response {
 
         if (!responseHeaders.isEmpty()) {
             output += "\r\n" + getHeaders();
-
         }
 
         if (body.length() > 0)
@@ -48,7 +47,7 @@ public class Response {
 
     public String getHeaders() {
         ArrayList<String> headerStrings = new ArrayList<String>();
-        for(Map.Entry<String, String> entry : responseHeaders.entrySet()){
+        for (Map.Entry<String, String> entry : responseHeaders.entrySet()){
             headerStrings.add(entry.getKey() + ": " + entry.getValue());
         }
 
@@ -61,7 +60,6 @@ public class Response {
         if (fields.length != 2) return;
         responseHeaders.put(fields[0].trim(), fields[1].trim());
     }
-
 
     public void addHeader(String tag, String value) {
         responseHeaders.put(tag, value);

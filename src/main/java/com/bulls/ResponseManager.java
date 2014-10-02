@@ -13,7 +13,6 @@ public class ResponseManager {
 
     public void generateOutput(Socket socket) {
         try {
-
             BufferedInputStream reader = new BufferedInputStream(socket.getInputStream());
             String inputData = getInput(reader);
 

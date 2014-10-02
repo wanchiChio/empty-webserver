@@ -50,7 +50,6 @@ public class Request {
             String[] lineArray = headerArray[i].split(":");
             headerMap.put(lineArray[0], lineArray[1]);
         }
-
     }
 
     public String getRawRequest() {

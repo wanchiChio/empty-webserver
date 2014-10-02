@@ -6,7 +6,7 @@ package com.bulls;
 public class MethodOptionHandler extends RequestHandler {
     public boolean processRequest(String data) {
 
-        response = new Response("200", "");
+        response = new Response("200", "Allowed: GET,HEAD,POST,OPTIONS,PUT");
 
         if(this.getHttpMethod() != null && this.getHttpMethod().equals("OPTIONS")) {
             response.addHeader("Allow", "GET,HEAD,POST,OPTIONS,PUT");

@@ -20,7 +20,6 @@ public class DirectoryHandler extends RequestHandler {
 
     public String getDirectoryListing(String path) {
 
-
         File[] listings = getDirectoryContents(path);
         StringBuilder newListing = new StringBuilder("");
 
@@ -35,14 +34,12 @@ public class DirectoryHandler extends RequestHandler {
 
                 newListing.append("<p><a href=\"" + f.getName() + "\">" +
                         f.getName() + "</a>");
-
             }
 
         }
         newListing.append("</html>");
         newListing.append("</body>");
         return newListing.toString();
-
     }
 
     public File[] getDirectoryContents(String path) {

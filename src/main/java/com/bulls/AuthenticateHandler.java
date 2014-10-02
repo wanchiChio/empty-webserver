@@ -14,7 +14,7 @@ public class AuthenticateHandler extends RequestHandler {
         String auth = "";
         String[] lines = data.split("\n");
 
-        for(int i=0; i < lines.length; i++){
+        for (int i = 0; i < lines.length; i++){
             boolean authExists = Pattern.matches("Authorization: Basic .*", lines[i]);
             if (authExists)  {
                 auth = lines[i];
@@ -25,21 +25,18 @@ public class AuthenticateHandler extends RequestHandler {
         if (auth.length() <= 0) {
             response = new Response("401", "Authentication required");
             return true;
-        }
-        else {
+        } else {
             String fields[] = auth.split(" ");
             if (fields.length > 2 && decodeCredentials(fields[2]).equals("admin:hunter2") ) {
                 response = new Response("200", "Authentication required");
                 return true;
-            }
-            else {
+            } else {
 
                 response = new Response("401", "Authentication required");
                 return true;
             }
         }
     }
-
 
     public void setRequestHeaders(String requestHeaders) {
         this.requestHeaders = requestHeaders;
@@ -59,7 +56,6 @@ public class AuthenticateHandler extends RequestHandler {
         }
 
         return decoded;
-
     }
 
 }

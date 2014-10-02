@@ -7,9 +7,6 @@ public abstract class RequestHandler {
 
     protected String httpMethod;
     protected String endPoint;
-    protected String responseCode;
-    protected String requestPath;
-    private String responseBody;
     protected Response response;
 
     public RequestHandler() {
@@ -23,8 +20,7 @@ public abstract class RequestHandler {
     public void parseInput(String data) {
         String[] parsed = data.split(" ");
 
-        if (parsed != null && parsed.length > 1)
-        {
+        if (parsed != null && parsed.length > 1) {
             setEndPoint(parsed[1]);
             setHttpMethod(parsed[0]);
         }
