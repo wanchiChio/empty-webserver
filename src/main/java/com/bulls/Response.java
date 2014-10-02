@@ -19,7 +19,7 @@ public class Response {
 
     public Response(String responseCode, String responseBody) {
         this.responseCode = responseCode;
-        this.body= responseBody;
+        this.body = responseBody;
         this.responseHeaders = new HashMap<String, String>();
     }
 

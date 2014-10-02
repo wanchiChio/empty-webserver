@@ -61,7 +61,18 @@ public class FileHandlerTest {
         handler.setHttpMethod("GET");
         handler.processRequest("GET /nonexistent HTTP/1.1");
 
-        assertEquals("404! What you're looking for ain't here, yo!", handler.getResponseBody());
+        assertEquals("404. These are not the droids you are looking for. Go along now.", handler.getResponseBody());
+    }
+
+    @Test
+    public void itReadsFiles() throws Exception {
+        String result = handler.readFile("src/main/resources/public/file1");
+        assertEquals("file1 contents", result);
+    }
+    @Test
+    public void itReadsImageFiles() throws Exception {
+        byte[] result = handler.readImage("src/main/resources/public/image.gif");
+        assertNotNull(result);
     }
 
 }

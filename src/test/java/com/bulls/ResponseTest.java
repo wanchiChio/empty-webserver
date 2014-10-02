@@ -32,7 +32,6 @@ public class ResponseTest {
                "\r\n\r\n" + response.getBody(), response.generateFullResponse());
     }
 
-
     @Test
     public void verifyHeader() throws Exception
     {

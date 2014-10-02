@@ -21,8 +21,16 @@ public class Server implements Runnable{
 
     public static void main(String[] args) {
         try {
-            int port = 5000;
-            String directory = "src/main/resources/public";
+            int port;
+            String directory;
+
+            if (args.length > 0) {
+                port = Integer.parseInt(args[1]);
+                directory = args[3];
+            } else {
+                port = 5000;
+                directory = "src/main/resources/public";
+            }
 
             Server server = new Server(port, directory);
             server.start();

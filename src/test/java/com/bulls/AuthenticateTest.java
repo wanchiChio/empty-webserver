@@ -4,7 +4,6 @@ package com.bulls;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.xml.bind.DatatypeConverter;
 import java.util.Base64;
 
 import static org.junit.Assert.assertEquals;
@@ -89,8 +88,4 @@ public class AuthenticateTest {
         assertEquals("200", handler.getResponseCode());
 
     }
-
-
-
-
 }

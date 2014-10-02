@@ -1,5 +1,7 @@
 package com.bulls;
 
+import org.apache.commons.io.FileUtils;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -27,7 +29,7 @@ public class FileHandler extends RequestHandler {
     }
 
     private void generate404Response() {
-        response = new Response("404", "404! What you're looking for ain't here, yo!");;
+        response = new Response("404", "404. These are not the droids you are looking for. Go along now.");;
     }
 
     public String readFile(String filePathString) {
@@ -44,5 +46,10 @@ public class FileHandler extends RequestHandler {
             e.printStackTrace();
         }
         return content;
+    }
+
+    public byte[] readImage(String filePathString) throws IOException {
+        File file = new File(filePathString);
+        return FileUtils.readFileToByteArray(file);
     }
 }
